@@ -1,0 +1,4 @@
+2025-01-10 10:00:01 INFO User login success user_id=101
+2025-01-10 10:05:15 ERROR Payment failed user_id=102
+2025-01-10 10:10:20 INFO Order placed user_id=101
+2025-01-10 10:15:30 WARNING Low stock product_id=1001

@@ -1,0 +1,6 @@
+pandas
+pytest
+requests
+SQLAlchemy
+psycopg2-binary
+

@@ -1,0 +1,12 @@
+.git
+.venv
+venv
+env
+__pycache__
+*.pyc
+.pytest_cache
+.DS_Store
+logs
+*.log
+project_7_log_pipeline/state
+

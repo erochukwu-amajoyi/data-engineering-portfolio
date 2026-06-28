@@ -1,0 +1,46 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+
+# Runtime artifacts
+logs/
+
+# Local data outputs
+*/data/clean_*.csv
+*/data/rejected_*.csv
+*/data/output/
+
+# Databases
+*.db
+*.sqlite
+*.sqlite3
+
+# IDE
+.vscode/
+.idea/
+*/state/*.json
+
+# Local draft/legacy work not included in the curated portfolio
+/Fault-Tolerant Data Pipeline/
+/Incremental_Data_Pipeline/
+/Testing_Data_Pipelines/
+/performance_optimisation_project/
+/scripts/
