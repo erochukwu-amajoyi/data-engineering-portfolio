@@ -1,37 +1,35 @@
 # Data Engineering Portfolio
 
-Seven production-style data engineering projects built around local, repeatable workflows. The portfolio demonstrates batch ingestion, API ingestion, data quality, JSON normalization, dimensional modeling, analytics marts, log processing, orchestration, testing, CI/CD, and containerized infrastructure.
+Seven local-first data engineering projects covering batch ingestion, API ingestion, data quality, JSON normalization, dimensional modeling, analytics marts, log processing, orchestration, testing, CI/CD, and containerized infrastructure.
 
-The platform is intentionally local-first: Airflow, Postgres, and the pipelines run with Docker Compose so the projects can be reviewed and demonstrated without creating cloud resources or generating AWS charges.
+The repository runs with local Airflow and Postgres through Docker Compose. No cloud resources are provisioned by default.
 
-## What This Shows
+## Overview
 
-- End-to-end ETL and ELT pipelines with clear inputs, transformations, and warehouse outputs.
-- Airflow DAGs for orchestration, retries, and scheduled execution.
+- End-to-end ETL and ELT pipelines with clear inputs, transformations, and outputs.
+- Airflow DAGs for scheduling, retries, and pipeline run tracking.
 - Postgres-backed loading for relational and analytics-ready tables.
-- Tests with `pytest` and a root CI command that validates the portfolio.
+- Tests with `pytest` and a root CI command for repeatable validation.
 - Environment-based configuration with no hard-coded secrets.
-- Docker Compose infrastructure for local demos.
+- Docker Compose infrastructure for local development.
 - GitHub Actions workflow for continuous integration.
 
-## Project Index
+## Projects
 
-| # | Project | Business Problem | Engineering Focus |
+| # | Project | Purpose | Engineering Focus |
 | --- | --- | --- | --- |
-| 1 | [Batch Sales ETL Platform](project_1_csv_pipeline/) | Load messy sales CSV data into a queryable warehouse table. | pandas ETL, validation, Postgres loading, Airflow scheduling |
+| 1 | [Batch Sales ETL Platform](project_1_csv_pipeline/) | Load sales CSV data into a queryable database table. | pandas ETL, validation, Postgres loading, Airflow scheduling |
 | 2 | [Resilient API Ingestion Pipeline](project_2_api_pipeline/) | Ingest external weather API data safely and repeatedly. | API extraction, timeouts, HTTP errors, mocked tests, retries |
-| 3 | [Data Cleaning and Quality Pipeline](project_3_data_cleaning/) | Separate usable records from bad records before analytics. | validation rules, rejected-record handling, quality checks |
+| 3 | [Data Cleaning and Quality Pipeline](project_3_data_cleaning/) | Separate usable records from invalid records before downstream processing. | validation rules, rejected-record handling, quality checks |
 | 4 | [Nested JSON Order Normalization](project_4_json_pipeline/) | Convert nested order payloads into relational tables. | JSON parsing, normalization, referential checks |
 | 5 | [Dimensional Data Warehouse](project_5_data_warehouse/) | Model sales data for analytics and reporting. | star schema, dimensions, fact tables, SQL DDL |
 | 6 | [E-commerce Analytics Pipeline](project_6_ecommerce_pipeline/) | Build customer, product, and revenue analytics from multiple sources. | joins, KPI marts, customer metrics, gold-layer outputs |
 | 7 | [Log Analytics and Performance Pipeline](project_7_log_pipeline/) | Parse application logs and maintain incremental analytics. | regex parsing, high-watermark state, operational marts |
 
-Additional portfolio notes:
+## Documentation
 
 - [Project Index](docs/PROJECT_INDEX.md)
-- [Resume and Interview Guide](docs/RESUME_AND_INTERVIEW_GUIDE.md)
 - [Local Platform Guide](docs/LOCAL_PLATFORM.md)
-- [Roadmap](PORTFOLIO_ROADMAP.md)
 
 ## Local Architecture
 
@@ -55,7 +53,7 @@ pip install -r requirements.txt
 cp .env.example .env
 ```
 
-Run the full local validation suite:
+Run the validation suite:
 
 ```bash
 make ci
@@ -89,7 +87,7 @@ Current local verification:
 - Docker Compose config validated.
 - Postgres runs locally on `localhost:5433`.
 - Airflow runs locally on `http://localhost:8081`.
-- Airflow discovers all seven portfolio DAGs with no import errors.
+- Airflow discovers all seven project DAGs with no import errors.
 - `portfolio_sales_batch_etl` has passed an Airflow DAG test.
 
 Useful commands:
@@ -108,7 +106,7 @@ make postgres-shell
 ```text
 .
 |-- dags/                         # Root Airflow DAG wrappers
-|-- docs/                         # Portfolio, resume, and platform notes
+|-- docs/                         # Project and platform documentation
 |-- infra/postgres/init/          # Local Postgres initialization
 |-- project_1_csv_pipeline/       # Batch sales ETL
 |-- project_2_api_pipeline/       # API ingestion
@@ -123,8 +121,6 @@ make postgres-shell
 `-- .github/workflows/ci.yml      # CI pipeline
 ```
 
-## Cloud and Terraform Note
+## Cloud Resources
 
-This repository does not provision AWS resources. That is intentional: the portfolio is designed to be reviewed and run locally without cloud billing risk.
-
-Terraform can be added later as documentation-only infrastructure-as-code, but the current version avoids any command that would create paid cloud resources.
+This repository is configured for local development and does not create cloud infrastructure.

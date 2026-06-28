@@ -1,6 +1,6 @@
 # Project Index
 
-This portfolio is organized as seven small but complete data engineering projects. Each one is designed to be understandable on its own and also fit into the shared local Airflow/Postgres platform.
+This repository is organized as seven small but complete data engineering projects. Each one is designed to be understandable on its own and also fit into the shared local Airflow/Postgres platform.
 
 ## 1. Batch Sales ETL Platform
 
@@ -8,7 +8,7 @@ This portfolio is organized as seven small but complete data engineering project
 
 **What it does:** Ingests raw sales CSV data, validates the schema, cleans types and missing values, and loads a `sales` table into Postgres.
 
-**Why it matters:** This is the reference batch ETL project. It shows the baseline skills expected in junior data engineering roles: extracting files, transforming data safely, loading into a database, and testing transformation logic.
+**Why it matters:** This is the reference batch ETL project. It shows a common file ingestion workflow: extracting records, transforming data safely, loading into a database, and testing transformation logic.
 
 **Key evidence:** project README, unit tests, dry-run mode, Postgres load path, Airflow DAG.
 
@@ -74,7 +74,7 @@ This portfolio is organized as seven small but complete data engineering project
 
 ## Shared Platform Evidence
 
-Across the portfolio:
+Across the repository:
 
 - Airflow DAG wrappers live in `dags/`.
 - Local Postgres and Airflow run through `docker-compose.yml`.

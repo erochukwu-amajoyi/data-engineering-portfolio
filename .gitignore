@@ -38,7 +38,7 @@ logs/
 .idea/
 */state/*.json
 
-# Local draft/legacy work not included in the curated portfolio
+# Local scratch work not included in this repository
 /Fault-Tolerant Data Pipeline/
 /Incremental_Data_Pipeline/
 /Testing_Data_Pipelines/
