@@ -1,0 +1,108 @@
+{
+  "name": "DelimitedText1",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "AzureBlobStorage1",
+      "type": "LinkedServiceReference"
+    },
+    "annotations": [],
+    "type": "DelimitedText",
+    "typeProperties": {
+      "location": {
+        "type": "AzureBlobStorageLocation",
+        "fileName": "df_master.csv",
+        "container": "bronze"
+      },
+      "columnDelimiter": ",",
+      "escapeChar": "\\",
+      "firstRowAsHeader": true,
+      "quoteChar": "\""
+    },
+    "schema": [
+      {
+        "name": "customerID",
+        "type": "String"
+      },
+      {
+        "name": "gender",
+        "type": "String"
+      },
+      {
+        "name": "SeniorCitizen",
+        "type": "String"
+      },
+      {
+        "name": "Partner",
+        "type": "String"
+      },
+      {
+        "name": "Dependents",
+        "type": "String"
+      },
+      {
+        "name": "tenure",
+        "type": "String"
+      },
+      {
+        "name": "PhoneService",
+        "type": "String"
+      },
+      {
+        "name": "MultipleLines",
+        "type": "String"
+      },
+      {
+        "name": "InternetService",
+        "type": "String"
+      },
+      {
+        "name": "OnlineSecurity",
+        "type": "String"
+      },
+      {
+        "name": "OnlineBackup",
+        "type": "String"
+      },
+      {
+        "name": "DeviceProtection",
+        "type": "String"
+      },
+      {
+        "name": "TechSupport",
+        "type": "String"
+      },
+      {
+        "name": "StreamingTV",
+        "type": "String"
+      },
+      {
+        "name": "StreamingMovies",
+        "type": "String"
+      },
+      {
+        "name": "Contract",
+        "type": "String"
+      },
+      {
+        "name": "PaperlessBilling",
+        "type": "String"
+      },
+      {
+        "name": "PaymentMethod",
+        "type": "String"
+      },
+      {
+        "name": "MonthlyCharges",
+        "type": "String"
+      },
+      {
+        "name": "TotalCharges",
+        "type": "String"
+      },
+      {
+        "name": "Churn",
+        "type": "String"
+      }
+    ]
+  }
+}

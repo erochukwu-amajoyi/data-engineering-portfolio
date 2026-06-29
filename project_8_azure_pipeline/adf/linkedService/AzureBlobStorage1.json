@@ -1,0 +1,13 @@
+{
+  "name": "AzureBlobStorage1",
+  "type": "Microsoft.DataFactory/factories/linkedservices",
+  "properties": {
+    "description": "csv dataset",
+    "annotations": [],
+    "type": "AzureBlobStorage",
+    "typeProperties": {
+      "connectionString": "DefaultEndpointsProtocol=https;AccountName=<storage-account-name>;EndpointSuffix=core.windows.net;",
+      "authenticationNote": "Credential removed from public repository. Use Azure-managed identity, Key Vault, or a local secure credential when redeploying."
+    }
+  }
+}

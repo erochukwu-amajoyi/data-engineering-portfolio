@@ -3,7 +3,7 @@
 -include .env
 export
 
-PYTEST_TARGETS = project_1_csv_pipeline/tests project_2_api_pipeline/tests project_3_data_cleaning/tests project_4_json_pipeline/tests project_5_data_warehouse/tests project_6_ecommerce_pipeline/tests project_7_log_pipeline/tests
+PYTEST_TARGETS = project_1_csv_pipeline/tests project_2_api_pipeline/tests project_3_data_cleaning/tests project_4_json_pipeline/tests project_5_data_warehouse/tests project_6_ecommerce_pipeline/tests project_7_log_pipeline/tests project_8_azure_pipeline/tests
 
 ci: test dry-run-all secret-scan
 
@@ -17,6 +17,7 @@ dry-run-all:
 	python project_5_data_warehouse/scripts/load_data.py --dry-run
 	python project_6_ecommerce_pipeline/scripts/ecommerce_pipeline.py --dry-run
 	python project_7_log_pipeline/scripts/log_pipeline.py --dry-run --no-state
+	python project_8_azure_pipeline/scripts/validate_adf_export.py
 
 up:
 	docker compose up -d
@@ -31,7 +32,7 @@ postgres-shell:
 	docker compose exec postgres psql -U postgres -d data_projects
 
 secret-scan:
-	! rg -n "eroxzy|postgresql://postgres:password|postgresql://postgres:[^p]" -g '!venv/**' -g '!**/__pycache__/**' -g '!Makefile'
+	! rg -n "eroxzy|postgresql://postgres:password|postgresql://postgres:[^p]|AccountKey=|SharedAccessSignature=|encryptedCredential|subscriptionId" -g '!venv/**' -g '!**/__pycache__/**' -g '!Makefile'
 
 status:
 	git status --short

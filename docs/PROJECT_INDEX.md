@@ -1,6 +1,6 @@
 # Project Index
 
-This repository is organized as seven small but complete data engineering projects. Each one is designed to be understandable on its own and also fit into the shared local Airflow/Postgres platform.
+This repository is organized as eight small but complete data engineering projects. The first seven fit into the shared local Airflow/Postgres platform; the eighth preserves a sanitized Azure Data Factory pipeline export as cloud proof without requiring live Azure billing.
 
 ## 1. Batch Sales ETL Platform
 
@@ -72,12 +72,22 @@ This repository is organized as seven small but complete data engineering projec
 
 **Key evidence:** regex parser, rejected-line handling, high-watermark state file, analytics marts.
 
+## 8. Azure Data Factory Blob Pipeline
+
+**Folder:** `project_8_azure_pipeline/`
+
+**What it does:** Preserves a sanitized Azure Data Factory Copy pipeline that reads a customer churn CSV from Azure Blob Storage, applies explicit tabular mappings, and writes to a delimited-text sink dataset.
+
+**Why it matters:** This demonstrates cloud data engineering experience without keeping billable resources alive. The project keeps ADF pipeline, dataset and linked-service artifacts in source control, removes account-specific credentials, and validates the export locally.
+
+**Key evidence:** ADF pipeline JSON, Blob Storage linked service, source/sink dataset schemas, mapping validation script, public-safe teardown notes.
+
 ## Shared Platform Evidence
 
 Across the repository:
 
 - Airflow DAG wrappers live in `dags/`.
 - Local Postgres and Airflow run through `docker-compose.yml`.
-- `make ci` runs tests, dry runs, and the secret scan.
+- `make ci` runs tests, dry runs, ADF export validation, and the secret scan.
 - GitHub Actions runs the CI workflow.
 - `.env.example` documents local configuration.

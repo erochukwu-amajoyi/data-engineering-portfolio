@@ -1,6 +1,6 @@
 # Data Engineering Portfolio
 
-Seven local-first data engineering projects covering batch ingestion, API ingestion, data quality, JSON normalization, dimensional modeling, analytics marts, log processing, orchestration, testing, CI/CD, and containerized infrastructure.
+Eight data engineering projects covering batch ingestion, API ingestion, data quality, JSON normalization, dimensional modeling, analytics marts, log processing, Azure Data Factory orchestration, testing, CI/CD, and containerized local infrastructure.
 
 The repository runs with local Airflow and Postgres through Docker Compose. No cloud resources are provisioned by default.
 
@@ -25,6 +25,7 @@ The repository runs with local Airflow and Postgres through Docker Compose. No c
 | 5 | [Dimensional Data Warehouse](project_5_data_warehouse/) | Model sales data for analytics and reporting. | star schema, dimensions, fact tables, SQL DDL |
 | 6 | [E-commerce Analytics Pipeline](project_6_ecommerce_pipeline/) | Build customer, product, and revenue analytics from multiple sources. | joins, KPI marts, customer metrics, gold-layer outputs |
 | 7 | [Log Analytics and Performance Pipeline](project_7_log_pipeline/) | Parse application logs and maintain incremental analytics. | regex parsing, high-watermark state, operational marts |
+| 8 | [Azure Data Factory Blob Pipeline](project_8_azure_pipeline/) | Copy and map a customer churn CSV through Azure Blob Storage with ADF artifacts preserved after teardown. | Azure Data Factory, Blob Storage, linked services, dataset schemas, cost-safe proof |
 
 ## Documentation
 
@@ -87,7 +88,7 @@ Current local verification:
 - Docker Compose config validated.
 - Postgres runs locally on `localhost:5433`.
 - Airflow runs locally on `http://localhost:8081`.
-- Airflow discovers all seven project DAGs with no import errors.
+- Airflow discovers all seven local project DAGs with no import errors.
 - `portfolio_sales_batch_etl` has passed an Airflow DAG test.
 
 Useful commands:
@@ -115,6 +116,7 @@ make postgres-shell
 |-- project_5_data_warehouse/     # Star schema warehouse
 |-- project_6_ecommerce_pipeline/ # E-commerce analytics
 |-- project_7_log_pipeline/       # Log analytics
+|-- project_8_azure_pipeline/     # Azure Data Factory Blob pipeline
 |-- docker-compose.yml            # Local Airflow + Postgres platform
 |-- Makefile                      # Common developer commands
 |-- requirements.txt              # Shared Python dependencies
@@ -123,4 +125,4 @@ make postgres-shell
 
 ## Cloud Resources
 
-This repository is configured for local development and does not create cloud infrastructure.
+This repository is configured for local development and does not create cloud infrastructure. The Azure project stores sanitized ADF artifacts and sample data only; live Azure resources are not required after capture.

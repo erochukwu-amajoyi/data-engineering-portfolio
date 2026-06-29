@@ -1,0 +1,6 @@
+selected resource name: projectpipeline1
+selected resource type: pipeline
+factory name: adeefproject
+factory location: eastus
+time of download (UTC): Mon, 29 Jun 2026 20:25:34 GMT
+subscription id: removed from public version
