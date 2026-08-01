@@ -1,0 +1,27 @@
+name: retail_analytics_engineering
+version: "1.0.0"
+config-version: 2
+
+profile: analytics_engineering
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  retail_analytics_engineering:
+    staging:
+      +materialized: view
+    intermediate:
+      +materialized: view
+    marts:
+      +materialized: table
+
+seeds:
+  retail_analytics_engineering:
+    +quote_columns: false

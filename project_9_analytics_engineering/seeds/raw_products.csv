@@ -1,0 +1,6 @@
+product_id,product_name,category,unit_price
+101,Cloud Storage Starter,Cloud,40
+102,Analytics Workshop,Services,250
+103,Data Quality Monitor,Software,120
+104,Pipeline Support Pack,Services,300
+105,Warehouse Optimizer,Software,450

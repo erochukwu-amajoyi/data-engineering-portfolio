@@ -3,7 +3,7 @@
 -include .env
 export
 
-PYTEST_TARGETS = project_1_csv_pipeline/tests project_2_api_pipeline/tests project_3_data_cleaning/tests project_4_json_pipeline/tests project_5_data_warehouse/tests project_6_ecommerce_pipeline/tests project_7_log_pipeline/tests project_8_azure_pipeline/tests
+PYTEST_TARGETS = project_1_csv_pipeline/tests project_2_api_pipeline/tests project_3_data_cleaning/tests project_4_json_pipeline/tests project_5_data_warehouse/tests project_6_ecommerce_pipeline/tests project_7_log_pipeline/tests project_8_azure_pipeline/tests project_9_analytics_engineering/tests
 
 ci: test dry-run-all secret-scan
 
@@ -18,6 +18,7 @@ dry-run-all:
 	python project_6_ecommerce_pipeline/scripts/ecommerce_pipeline.py --dry-run
 	python project_7_log_pipeline/scripts/log_pipeline.py --dry-run --no-state
 	python project_8_azure_pipeline/scripts/validate_adf_export.py
+	python project_9_analytics_engineering/scripts/build_local_analytics.py --dry-run
 
 up:
 	docker compose up -d
@@ -36,4 +37,3 @@ secret-scan:
 
 status:
 	git status --short
-

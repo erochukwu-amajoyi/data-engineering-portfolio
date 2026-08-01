@@ -1,6 +1,6 @@
 # Project Index
 
-This repository is organized as eight small but complete data engineering projects. The first seven fit into the shared local Airflow/Postgres platform; the eighth preserves a sanitized Azure Data Factory pipeline export as cloud proof without requiring live Azure billing.
+This repository is organized as nine small but complete data projects. The first seven fit into the shared local Airflow/Postgres platform, the eighth preserves a sanitized Azure Data Factory pipeline export as cloud proof without requiring live Azure billing, and the ninth adds a dbt-compatible analytics engineering track.
 
 ## 1. Batch Sales ETL Platform
 
@@ -82,12 +82,30 @@ This repository is organized as eight small but complete data engineering projec
 
 **Key evidence:** ADF pipeline JSON, Blob Storage linked service, source/sink dataset schemas, mapping validation script, public-safe teardown notes.
 
+## 9. Retail Analytics Engineering with dbt
+
+**Folder:** `project_9_analytics_engineering/`
+
+**What it does:** Models raw retail seeds through staging, intermediate, fact, dimension, and mart layers using dbt-compatible SQL files.
+
+**Why it matters:** Analytics engineering roles often focus on transforming trusted raw data into documented, tested, business-facing datasets. This project shows SQL modelling, `ref()` lineage, schema tests, singular tests, documentation, and cost-safe local validation.
+
+**Key evidence:** `dbt_project.yml`, staging/intermediate/mart models, model YAML descriptions, singular SQL tests, local validation runner, dashboard-ready analysis queries.
+
+## Analytics Engineering Track
+
+**Folder:** `docs/ANALYTICS_ENGINEERING_PORTFOLIO.md`
+
+**What it does:** Curates the strongest analytics engineering evidence from the repository and connects it to the dissertation notebook on missing-data handling.
+
+**Why it matters:** This gives readers a clear role-specific path through the portfolio instead of making them infer which projects are most relevant.
+
 ## Shared Platform Evidence
 
 Across the repository:
 
 - Airflow DAG wrappers live in `dags/`.
 - Local Postgres and Airflow run through `docker-compose.yml`.
-- `make ci` runs tests, dry runs, ADF export validation, and the secret scan.
+- `make ci` runs tests, dry runs, ADF export validation, analytics mart validation, and the secret scan.
 - GitHub Actions runs the CI workflow.
 - `.env.example` documents local configuration.

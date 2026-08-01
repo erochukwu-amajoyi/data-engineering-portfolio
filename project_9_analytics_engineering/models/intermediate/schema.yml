@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: int_order_items_enriched
+    description: Order rows enriched with customer and product attributes before mart aggregation.
+    columns:
+      - name: order_id
+        description: Order identifier carried from staging.
+        tests:
+          - not_null
+      - name: gross_revenue
+        description: Revenue after order-level discount.
+        tests:
+          - not_null

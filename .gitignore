@@ -33,6 +33,11 @@ logs/
 *.sqlite
 *.sqlite3
 
+# dbt local artifacts
+target/
+dbt_packages/
+logs/dbt.log
+
 # IDE
 .vscode/
 .idea/

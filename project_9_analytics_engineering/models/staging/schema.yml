@@ -1,0 +1,52 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: Clean customer records prepared for dimensional modelling.
+    columns:
+      - name: customer_id
+        description: Primary customer identifier from the raw source.
+        tests:
+          - not_null
+          - unique
+      - name: segment
+        description: Commercial segment used for customer reporting.
+        tests:
+          - accepted_values:
+              values: ["Consumer", "SMB", "Enterprise"]
+
+  - name: stg_orders
+    description: Clean order rows with typed identifiers, quantities, dates, and discount values.
+    columns:
+      - name: order_id
+        description: Primary order identifier.
+        tests:
+          - not_null
+          - unique
+      - name: customer_id
+        description: Foreign key to `stg_customers`.
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_customers')
+              field: customer_id
+      - name: product_id
+        description: Foreign key to `stg_products`.
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_products')
+              field: product_id
+
+  - name: stg_products
+    description: Clean product catalogue records prepared for product dimension modelling.
+    columns:
+      - name: product_id
+        description: Primary product identifier.
+        tests:
+          - not_null
+          - unique
+      - name: unit_price
+        description: Current unit price used in order revenue calculations.
+        tests:
+          - not_null

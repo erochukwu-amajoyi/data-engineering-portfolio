@@ -1,6 +1,6 @@
 # Data Engineering Portfolio
 
-Eight data engineering projects covering batch ingestion, API ingestion, data quality, JSON normalization, dimensional modeling, analytics marts, log processing, Azure Data Factory orchestration, testing, CI/CD, and containerized local infrastructure.
+Nine data projects covering batch ingestion, API ingestion, data quality, JSON normalization, dimensional modeling, analytics marts, log processing, Azure Data Factory orchestration, dbt-compatible analytics engineering, testing, CI/CD, and containerized local infrastructure.
 
 The repository runs with local Airflow and Postgres through Docker Compose. No cloud resources are provisioned by default.
 
@@ -9,6 +9,7 @@ The repository runs with local Airflow and Postgres through Docker Compose. No c
 - End-to-end ETL and ELT pipelines with clear inputs, transformations, and outputs.
 - Airflow DAGs for scheduling, retries, and pipeline run tracking.
 - Postgres-backed loading for relational and analytics-ready tables.
+- SQL/dbt-compatible modelling for analytics engineering roles.
 - Tests with `pytest` and a root CI command for repeatable validation.
 - Environment-based configuration with no hard-coded secrets.
 - Docker Compose infrastructure for local development.
@@ -26,10 +27,23 @@ The repository runs with local Airflow and Postgres through Docker Compose. No c
 | 6 | [E-commerce Analytics Pipeline](project_6_ecommerce_pipeline/) | Build customer, product, and revenue analytics from multiple sources. | joins, KPI marts, customer metrics, gold-layer outputs |
 | 7 | [Log Analytics and Performance Pipeline](project_7_log_pipeline/) | Parse application logs and maintain incremental analytics. | regex parsing, high-watermark state, operational marts |
 | 8 | [Azure Data Factory Blob Pipeline](project_8_azure_pipeline/) | Copy and map a customer churn CSV through Azure Blob Storage with ADF artifacts preserved after teardown. | Azure Data Factory, Blob Storage, linked services, dataset schemas, cost-safe proof |
+| 9 | [Retail Analytics Engineering with dbt](project_9_analytics_engineering/) | Transform raw retail data into tested, documented reporting marts. | SQL, dbt `ref()` lineage, staging models, facts, dimensions, marts, data tests |
+
+## Analytics Engineering Track
+
+For analytics engineering roles, the strongest portfolio set is:
+
+- [Retail Analytics Engineering with dbt](project_9_analytics_engineering/)
+- [Dimensional Data Warehouse](project_5_data_warehouse/)
+- [E-commerce Analytics Pipeline](project_6_ecommerce_pipeline/)
+- [Data Cleaning and Quality Pipeline](project_3_data_cleaning/)
+
+See the [Analytics Engineering Portfolio Track](docs/ANALYTICS_ENGINEERING_PORTFOLIO.md) for the technical focus and the related dissertation evidence.
 
 ## Documentation
 
 - [Project Index](docs/PROJECT_INDEX.md)
+- [Analytics Engineering Portfolio Track](docs/ANALYTICS_ENGINEERING_PORTFOLIO.md)
 - [Local Platform Guide](docs/LOCAL_PLATFORM.md)
 
 ## Local Architecture
@@ -38,8 +52,10 @@ The repository runs with local Airflow and Postgres through Docker Compose. No c
 flowchart LR
     A["Source files and APIs"] --> B["Python ETL pipelines"]
     B --> C["Postgres: data_projects"]
+    C --> G["SQL/dbt-compatible marts"]
     D["Airflow scheduler"] --> B
     E["pytest"] --> B
+    E --> G
     F["GitHub Actions"] --> E
 ```
 
@@ -84,11 +100,11 @@ make down
 
 Current local verification:
 
-- `26 passed`
+- `31 passed`
 - Docker Compose config validated.
 - Postgres runs locally on `localhost:5433`.
 - Airflow runs locally on `http://localhost:8081`.
-- Airflow discovers all seven local project DAGs with no import errors.
+- Airflow discovers all seven scheduled pipeline DAGs with no import errors.
 - `portfolio_sales_batch_etl` has passed an Airflow DAG test.
 
 Useful commands:
@@ -117,6 +133,7 @@ make postgres-shell
 |-- project_6_ecommerce_pipeline/ # E-commerce analytics
 |-- project_7_log_pipeline/       # Log analytics
 |-- project_8_azure_pipeline/     # Azure Data Factory Blob pipeline
+|-- project_9_analytics_engineering/ # dbt-compatible analytics engineering
 |-- docker-compose.yml            # Local Airflow + Postgres platform
 |-- Makefile                      # Common developer commands
 |-- requirements.txt              # Shared Python dependencies

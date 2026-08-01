@@ -1,0 +1,86 @@
+version: 2
+
+models:
+  - name: fct_orders
+    description: Order-level fact table used for revenue reporting and reconciliation.
+    columns:
+      - name: order_id
+        description: Unique order identifier.
+        tests:
+          - not_null
+          - unique
+      - name: customer_id
+        description: Customer associated with the order.
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customers')
+              field: customer_id
+      - name: order_revenue
+        description: Order revenue after discount.
+        tests:
+          - not_null
+
+  - name: dim_customers
+    description: Customer dimension with lifetime order and revenue metrics.
+    columns:
+      - name: customer_id
+        description: Unique customer identifier.
+        tests:
+          - not_null
+          - unique
+      - name: is_repeat_customer
+        description: Boolean-style flag showing whether the customer has more than one order.
+        tests:
+          - accepted_values:
+              values: [0, 1]
+
+  - name: dim_products
+    description: Product dimension with units sold and revenue metrics.
+    columns:
+      - name: product_id
+        description: Unique product identifier.
+        tests:
+          - not_null
+          - unique
+
+  - name: mart_daily_revenue
+    description: Daily revenue mart for business reporting.
+    columns:
+      - name: order_date
+        description: Business date for revenue aggregation.
+        tests:
+          - not_null
+          - unique
+      - name: revenue
+        description: Total revenue for the date.
+        tests:
+          - not_null
+
+  - name: mart_customer_lifetime_value
+    description: Customer value mart for segmentation and lifecycle reporting.
+    columns:
+      - name: customer_id
+        description: Unique customer identifier.
+        tests:
+          - not_null
+          - unique
+      - name: value_band
+        description: Customer value segment derived from lifetime revenue.
+        tests:
+          - accepted_values:
+              values: ["high_value", "mid_value", "low_value"]
+
+exposures:
+  - name: revenue_performance_dashboard
+    label: Revenue Performance Dashboard
+    type: dashboard
+    maturity: medium
+    description: Dashboard-ready marts for daily revenue, customer value, and product performance.
+    depends_on:
+      - ref('mart_daily_revenue')
+      - ref('mart_customer_lifetime_value')
+      - ref('dim_products')
+    owner:
+      name: Erochukwu Amajoyi
+      email: e.amajoyi-2024@hull.ac.uk
